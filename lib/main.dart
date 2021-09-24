@@ -91,56 +91,97 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(15)))),
               ),
             ),
-            Stack(
-              children: <Widget>[
-              
-            Container(margin: EdgeInsets.only(right: 240),
-              height: 300,width:400,
-              decoration: BoxDecoration(
-                borderRadius:BorderRadius.circular(15),color: Color(0xFFFFCDD2).withOpacity(0.5)
-                
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  FoodCard(
+                      image: "assets/images/tand.jpg",
+                      price: "\n200",
+                      title: "Chicken Tandoori",
+                      description:
+                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced"),
+                  FoodCard(
+                      image: "assets/images/tand.jpg",
+                      price: "300",
+                      title: "Chicken Handi",
+                      description:
+                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced")
+                ],
               ),
-            ),
-            Container(margin: EdgeInsets.only(left:5),
-            
-              height: 150,width: 150,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,color: Color(0xFFFFCDD2).withOpacity(0.25)
-              ),
-            ),
-            // Container(
-            //   decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //       image: AssetImage("assets/images/tandu.png")
-            //     )
-            //   ),
-            // )
-            CircleAvatar(radius: 70,
-              backgroundImage: AssetImage("assets/images/tand.jpg"),
-            ),
-         Positioned(
-           left: 140,
-           top: 80,
-           child: Text("\$20",style: TextStyle(fontSize: 15))
-           ),
-           Positioned(
-           right: 235,
-           top: 150,
-           child:Column(
-             children:<Widget> [
-                Text("Chicken Tandoori",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
-                Text("A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced",style: TextStyle(fontSize: 15,color: Colors.red) ,)
-             ],
-           )
-           
-           )
-              ]
-              )
+            )
+          ],
+        ));
+  }
+}
 
-                                ],
-          
-        )
-        );
+class FoodCard extends StatelessWidget {
+  final String image;
+  final String price;
+  final String title;
+  final String description;
+  const FoodCard({
+    Key? key,
+    required this.image,
+    required this.price,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(left: 20),
+        // height: 400,width: 380,
+        child: Stack(children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            height: 300,
+            width: 190,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFFFFCDD2).withOpacity(0.5)),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 5),
+            height: 150,
+            width: 150,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFFFCDD2).withOpacity(0.25)),
+          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //       image: AssetImage("assets/images/tandu.png")
+          //     )
+          //   ),
+          // )
+          CircleAvatar(
+            radius: 70,
+            backgroundImage: AssetImage(image),
+          ),
+          Positioned(
+              left: 140,
+              top: 80,
+              child: Text(price, style: TextStyle(fontSize: 15))),
+          Positioned(
+              right: 20,
+              top: 150,
+              child: Column(
+                children: <Widget>[
+                  Text(title,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic)),
+                  Text(
+                    description,
+                    style: TextStyle(fontSize: 15, color: Colors.red),
+                  )
+                ],
+              ))
+        ]));
   }
 }
 
@@ -164,9 +205,3 @@ class Categories extends StatelessWidget {
                 color: active ? Colors.red : Colors.black, fontSize: 20)));
   }
 }
-
-
-
-
-//( Text("Chicken Tandoori",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),
-  //         )
