@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: Container(
+          padding: EdgeInsets.all(10),
+          height: 70,
+          width: 70,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.red,
+          ),
+          child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.red[200],
+              ),
+              child: SvgPicture.asset("assets/images/plus.svg")),
+        ),
         appBar: AppBar(
           title: Text("Food Junction"),
           backgroundColor: Colors.black,
@@ -91,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(15)))),
               ),
             ),
+            SizedBox(height: 15),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -100,13 +118,19 @@ class _HomePageState extends State<HomePage> {
                       price: "\n200",
                       title: "Chicken Tandoori",
                       description:
-                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced"),
+                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced", press: '',),
                   FoodCard(
-                      image: "assets/images/tand.jpg",
-                      price: "300",
+                      image: "assets/images/handu.jpeg",
+                      price: "\n300",
                       title: "Chicken Handi",
                       description:
-                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced")
+                          "A dish of roasted \n chicken marinated \n in yogurt and generously\n spiced", press: '',),
+                  FoodCard(
+                      image: "assets/images/lolu.jpg",
+                      price: "\n500",
+                      title: "Chicken Lollipop",
+                      description:
+                          "A hot and spicy appetizer \n made with drummettes or \n whole chicken wings", press: '',)
                 ],
               ),
             )
@@ -120,12 +144,13 @@ class FoodCard extends StatelessWidget {
   final String price;
   final String title;
   final String description;
+  final String press;
   const FoodCard({
     Key? key,
     required this.image,
     required this.price,
     required this.title,
-    required this.description,
+    required this.description, required this.press,
   }) : super(key: key);
 
   @override
